@@ -20,17 +20,15 @@ Docker deploying Nginx MySQL PHP7 in one key, support full feature functions.
 1. Install `git`, `docker` and `docker-compose`;
 2. Clone project:
     ```
-    $ git clone https://github.com/yeszao/dnmp.git
+    $ git clone https://github.com/hjyisok/nansoon-lnmp.git
     ```
 4. Start docker containers:
     ```
-    $ cd dnmp
+    $ cd nansoon-lnmp
     $ docker-compose up
     ```
     You may need use `sudo` before this command in Linux.
 5. Go to your browser and type `localhost`, you will see:
-
-![Demo Image](./snapshot.png)
 
 The index file is located in `./www/site1/`.
 
@@ -82,6 +80,3 @@ Same as `php-fpm`, log file must be created manually(in host):
 $ touch log/mysql.slow.log
 $ chmod a+w log/mysql.slow.log
 ```
-
-## 6. License
-MIT
