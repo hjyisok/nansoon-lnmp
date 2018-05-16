@@ -1,7 +1,5 @@
-# dnmp
+# lnmp+redis
 Docker deploying Nginx MySQL PHP7 in one key, support full feature functions.
-
-![Demo Image](./dnmp.png)
 
 ## 1. Feature
 1. Completely open source.
