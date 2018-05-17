@@ -1,3 +1,4 @@
 <?php
-echo 'Site 1<br />';
-phpinfo();
+include_once './vendor/autoload.php';
+echo 1;
+echo showName();

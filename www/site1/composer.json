@@ -1,0 +1,9 @@
+{
+    "autoload": {
+        "files": ["comm/functions.php"]
+    },
+    "require": {
+        "monolog/monolog": "1.2.*"
+    }
+
+}

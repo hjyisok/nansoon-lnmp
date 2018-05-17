@@ -50,7 +50,14 @@ services:
       - net-redis
     ports:
       - "6379:6379"
-
+  composer:
+    container_name: nansoon-composer
+    restart: 'no'
+    image: composer/composer:php7
+    volumes:
+      - ./www/:/var/www/html/:rw
+    working_dir: /var/www/html/site1/
+    command: install
 networks:
   net-php:
   net-mysql:
