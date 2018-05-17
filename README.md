@@ -1,21 +1,20 @@
 # lnmp+redis
-Docker deploying Nginx MySQL PHP7 in one key, support full feature functions.
+Docker composer Nginx MySQL PHP7 redis composer.
 
 ## 1. Feature
-1. Completely open source.
-2. Support Multiple PHP version(PHP5.4, PHP5.6, PHP7.2) switch.
-3. Support Multiple domains.
-4. Support HTTPS and HTTP/2.
-5. PHP source located in host.
-6. MySQL data directory in host.
-7. All conf files located in host.
-8. All log files located in host.
-9. Built-in PHP extensions install commands.
-10. Promise 100% available.
-11. Supported any OS with docker.
+1. 完全开源
+2. 支持多个PHP版本(PHP5.4, PHP5.6, PHP7.2)
+3. 支持多域名
+4. 支持HTTPS和HTTP
+5. 本地PHP 源文件.
+6. 本地mysql数据
+7. 所有的conf文件都位于本地
+8. 所有日志文件位于本地
+9. PHP扩展内置
+10. 支持所有系统的Docker
 
 ## 2. Usage
-1. Install `git`, `docker` and `docker-compose`;
+1. 安装 `git`, `docker` and `docker-compose`;
 2. Clone project:
     ```
     $ git clone https://github.com/hjyisok/nansoon-lnmp.git
@@ -23,58 +22,69 @@ Docker deploying Nginx MySQL PHP7 in one key, support full feature functions.
 4. Start docker containers:
     ```
     $ cd nansoon-lnmp
-    $ docker-compose up
+    $ sudo docker-compose up (后台运行 sudo docker-compose up -d) 
     ```
-    You may need use `sudo` before this command in Linux.
-5. Go to your browser and type `localhost`, you will see:
+5. 浏览器 `localhost` 或者 服务器ip, 将看到phpinfo信息:
 
-The index file is located in `./www/site1/`.
+默认目录 `./www/site1/`.
 
-## 3. Other PHP version?
-Default, we start LATEST PHP version by using:
+## 3. 其他 PHP 版本安装?
+默认php7:
 ```
 $ docker-compose up
 ```
-we can also start PHP5.4 or PHP5.6 by using:
+PHP5.4 or PHP5.6 使用:
 ```
 $ docker-compose -f docker-compose54.yml up
 $ docker-compose -f docker-compose56.yml up
 ```
-We need not change any other files, such as nginx config file or php.ini, everything will work fine in current environment (except code compatibility error).
+不需要改变其他文件, 比如nginx配置文件或php.ini，在当前环境下一切都可以正常工作(代码兼容性错误除外)。
 
-> Notice: We can only start one php version, for they using same port. We must STOP the running project then START the other one.
+> 注意:我们只能启动一个php版本，因为它们使用同一个端口。我们必须停止运行项目，然后启动另一个项目。
 
 ## 4. HTTPS and HTTP/2
-Default demo include 2 sites:
+默认的演示包括两个站点:
 * http://www.site1.com (same with http://localhost)
 * https://www.site2.com
 
-To preview them, add 2 lines to your hosts file (at `/etc/hosts` on Linux and `C:\Windows\System32\drivers\etc\hosts` on Windows):
+添加 host 信息 (`/etc/hosts` on Linux and `C:\Windows\System32\drivers\etc\hosts` on Windows):
 ```
 127.0.0.1 www.site1.com
 127.0.0.1 www.site2.com
 ```
-Then you can visit from browser.
-
 
 ## 5. Use log
-We can identify log directory in nginx / php / php-fpm / mysql config file.
-To display the log file in host, we should config them to `/var/log/dnmp`.
+日志文件目录在`.log/` nginx / php / php-fpm / mysql 
+要在主机中显示日志文件，我们应该配置它们 `/var/log/dnmp`.
 
-But, there are some differences:
+但是，有一些不同之处:
 
 ### 5.1 Nginx log
-Nginx will auto generate all log files.
+Nginx将自动生成所有日志文件。
 
 ### 5.2 PHP-FPM log
-To use `php-fpm` log, you must create log file manually(in host):
+使用 `php-fpm` log, 您必须手动创建日志文件在本地:
 ```bash
 $ touch log/php.fpm.error.log
 $ chmod a+w log/php.fpm.error.log
 ```
 ### 5.3 MySQL log
-Same as `php-fpm`, log file must be created manually(in host):
+和 `php-fpm` 相似, 您必须手动创建日志文件在本地:
 ```bash
 $ touch log/mysql.slow.log
 $ chmod a+w log/mysql.slow.log
 ```
+
+## 6. Use composer
+`composer install `
+在站点根目录编写composer.json文件，
+docker-compose up 时自动执行安装，将在根本目录下生成vender文件
+例如 ：
+{
+    "autoload": {
+        "files": ["comm/functions.php"]
+    }
+}
+在入口文件index.php 中添加 
+` include_once './vendor/autoload.php' `
+即可使用自动加载功能
