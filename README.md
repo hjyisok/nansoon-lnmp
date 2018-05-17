@@ -76,8 +76,8 @@ $ chmod a+w log/mysql.slow.log
 ```
 
 ## 6. Use composer
-*在站点根目录编写composer.json文件，
-*例如 ：
+ 在站点根目录编写composer.json文件，
+ 例如 ：
 ```bash
 {
     "autoload": {
@@ -85,9 +85,9 @@ $ chmod a+w log/mysql.slow.log
     }
 }
 ```
-*docker-compose up 时自动执行安装，将在根本目录下生成vender文件
-*在入口文件index.php 中添加 
+ docker-compose up 时自动执行安装，将在根本目录下生成vender文件
+ 在入口文件index.php 中添加 
 ```bash
  include_once './vendor/autoload.php' 
 ```
-即可使用自动加载功能
+ 即可使用自动加载功能
